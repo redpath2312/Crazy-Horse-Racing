@@ -19565,8 +19565,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
+      propertyPath: isRacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
       propertyPath: maxStamina
-      value: 60
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
+      propertyPath: targetSpeed
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
       propertyPath: staminaDrain
@@ -19575,6 +19583,10 @@ PrefabInstance:
     - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
       propertyPath: currentStamina
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
+      propertyPath: accelerationFactor
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19636,6 +19648,18 @@ PrefabInstance:
     - target: {fileID: 3753940625296947120, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
       propertyPath: m_Name
       value: Brown Horse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: maxStamina
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: targetSpeed
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: accelerationFactor
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19700,7 +19724,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
       propertyPath: maxStamina
-      value: 60
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
+      propertyPath: targetSpeed
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
       propertyPath: staminaDrain
@@ -19709,6 +19737,10 @@ PrefabInstance:
     - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
       propertyPath: currentStamina
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
+      propertyPath: accelerationFactor
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19785,12 +19817,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
+      propertyPath: isRacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: maxStamina
-      value: 60
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
+      propertyPath: targetSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: staminaDrain
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
+      propertyPath: accelerationFactor
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7630540990214109660, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: m_Name
