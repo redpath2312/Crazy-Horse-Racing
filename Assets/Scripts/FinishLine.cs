@@ -11,4 +11,5 @@ public class FinishLine : MonoBehaviour
             Debug.Log(other.gameObject.name + " has finished the race");
         }
     }
+    //Set up events for race finish, and then have horse target speed change as crosses the line.
 }

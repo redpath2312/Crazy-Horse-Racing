@@ -6,12 +6,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Horse : MonoBehaviour
 {
-    public bool tempAccZero, isPlayer, isSprinting, isRacing, isTired, isExhausted; //isRacing is when race has started, not finished and (health) not dead.
-    public float baseRunSpeed, minRunSpeed, maxRunSpeed, accelerationFactor, targetSpeed, currentSpeed,sprintModifier, baseSwaySpeed, minSwaySpeed,maxSwaySpeed,staminaDrain,maxStamina, currentStamina;
+    public bool isPlayer, isSprinting, isRacing, isTired, isExhausted; //isRacing is when race has started, not finished and (health) not dead.
+    public float baseRunSpeed, minRunSpeed, maxRunSpeed, accelerationFactor, baseAccelerationFactor, targetSpeed, currentSpeed,sprintModifier, baseSwaySpeed, minSwaySpeed,maxSwaySpeed,staminaDrain,maxStamina, currentStamina;
 
     [SerializeField]
     WaitForSeconds speedChangeInterval = new WaitForSeconds(1.5f);
-
 
     public GameObject stopLine;
     SpriteRenderer spriteRenderer;
@@ -26,6 +25,7 @@ public class Horse : MonoBehaviour
     void Start()
     {
         currentSpeed = 0;
+        accelerationFactor = baseAccelerationFactor;
         stopLine = GameObject.Find("Stop Line");
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -55,25 +55,13 @@ public class Horse : MonoBehaviour
         {
             SpeedCheck();
             SprintCheck();
-            Movement();            
-            
-
+            Movement();
         }
+
         if (RaceManager.instance.IsParading)
         {
             ParadeMovement();
-        }
-        
-        if (tempAccZero ==false)
-        {
-            if (accelerationFactor == 0)
-            {
-                Debug.Log("acceleration is zero on " + gameObject.name);
-                tempAccZero = true;
-            }
-        }
-
-        
+        }                   
     }
 
     private void SprintCheck()
@@ -82,25 +70,19 @@ public class Horse : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                currentStamina = currentStamina - staminaDrain * Time.deltaTime;
+                if (!isTired)
+
+                {
+                    IsSprinting(true);
+                }
 
                 if (currentStamina < 0 && !isExhausted)
                 {
                     {
                         isTired = true;
-                        isSprinting = false;
+                        IsSprinting(false);
                         StartCoroutine(IsExhausted());
                     }
-                }
-
-                else if (isSprinting)
-                {
-                    targetSpeed = 1.75f * baseRunSpeed;
-                }
-
-                else if (!isSprinting && !isTired)
-                {
-                    IsSprinting();
                 }
                 else return;
             }
@@ -108,38 +90,31 @@ public class Horse : MonoBehaviour
             {
                 if (isSprinting)
                 {
-                    //Debug.Log("Stopped Sprinting");
-                    isSprinting = false;
-                    accelerationFactor /= 3f;
-                    targetSpeed =  baseRunSpeed;
+                    Debug.Log("stopped sprinting");
+                    IsSprinting(false);
                 }
                 else return;
             }
+
         }
-        else
-
-        {
-            if (isSprinting)
-            currentStamina = currentStamina - staminaDrain * Time.deltaTime;
-        }
-
-
-
     }
-    private bool IsSprinting()
-    {
-        //if (targetspeed < currentspeed)
-        //{
-        //    bug here i think with acc is zero
-        //    debug.log("is bug here inverting acceleration factor");
-        //}
+    private bool IsSprinting(bool isSprintingBool)
+    { 
+        if (isSprintingBool == true)
+        {
+            targetSpeed = 1.75f * baseRunSpeed;
+            accelerationFactor = 3 * baseAccelerationFactor;
+            currentStamina = currentStamina - staminaDrain * Time.deltaTime;
+            return isSprinting = true;
+        }
 
-        targetSpeed = 1.75f * baseRunSpeed;
-        accelerationFactor *= 3f;
-        //Debug.Log("Sprinting is called");
-        //sprintModifier = 1.75f;
-        return isSprinting = true;
-
+        else
+        {
+            targetSpeed = baseRunSpeed;
+            accelerationFactor = baseAccelerationFactor;
+            Debug.Log("Bool IsSprinting stopped on " + gameObject.name);
+            return isSprinting = false;
+        }
     }
     IEnumerator IsExhausted()
     {
@@ -159,12 +134,10 @@ public class Horse : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             //Debug.Log("AISprint started on " + gameObject.name);
-            IsSprinting();
+            IsSprinting(true);
             yield return new WaitForSeconds(1f);
             //Debug.Log("AISprint ended on " + gameObject.name);
-            isSprinting = false;
-            accelerationFactor /= 3f;
-            targetSpeed = baseRunSpeed;
+            IsSprinting(false);
             //Debug.Log(i + " done");
             yield return new WaitForSeconds(1.5f);
         }
@@ -229,9 +202,7 @@ public class Horse : MonoBehaviour
         {
             targetSpeed = baseRunSpeed;
         }
-        //if (isSprinting&& !isExhausted) { 
 
-        //}
     }
 
     IEnumerator RunSpeed()
@@ -252,7 +223,6 @@ public class Horse : MonoBehaviour
             yield return (speedChangeInterval);
             float runSpeedRange = UnityEngine.Random.Range(minRunSpeed, maxRunSpeed);
             baseRunSpeed = runSpeedRange;
-            //target speed getting overriden here when sprinting, need baserunspeed instead?
         }
     }
 
