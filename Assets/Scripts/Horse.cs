@@ -76,7 +76,7 @@ public class Horse : MonoBehaviour
                     IsSprinting(true);
                 }
 
-                if (currentStamina < 0 && !isExhausted)
+                if (currentStamina <= 0 && !isExhausted)
                 {
                     {
                         isTired = true;
@@ -96,6 +96,21 @@ public class Horse : MonoBehaviour
                 else return;
             }
 
+        }
+        else if (isSprinting)
+        {
+            currentStamina = currentStamina - staminaDrain * Time.deltaTime;
+
+            if (currentStamina <= 0 && !isExhausted)
+            {
+                {
+                    isTired = true;
+                    IsSprinting(false);
+                    StopCoroutine(AISprint());
+                    StartCoroutine(IsExhausted());
+                }
+            }
+            else return;
         }
     }
     private bool IsSprinting(bool isSprintingBool)
@@ -128,18 +143,22 @@ public class Horse : MonoBehaviour
 
     IEnumerator AISprint()
     {
-        yield return new WaitForSeconds(1f);
-        ////is sprinting for random number of times so that total 
-
-        for (int i = 0; i < 4; i++)
+        while (!isExhausted)
         {
-            //Debug.Log("AISprint started on " + gameObject.name);
-            IsSprinting(true);
             yield return new WaitForSeconds(1f);
-            //Debug.Log("AISprint ended on " + gameObject.name);
-            IsSprinting(false);
-            //Debug.Log(i + " done");
-            yield return new WaitForSeconds(1.5f);
+            ////is sprinting for random number of times so that total 
+
+            for (int i = 0; i < 4; i++)
+            {
+
+                //Debug.Log("AISprint started on " + gameObject.name);
+                IsSprinting(true);
+                yield return new WaitForSeconds(1f);
+                //Debug.Log("AISprint ended on " + gameObject.name);
+                IsSprinting(false);
+                //Debug.Log(i + " done");
+                yield return new WaitForSeconds(1.5f);
+            }
         }
 
     }
@@ -228,7 +247,7 @@ public class Horse : MonoBehaviour
 
     IEnumerator SwaySpeed()
     {
-        while (true)
+        while (isRacing)
         {
             yield return (speedChangeInterval);
             float swaySpeedRange = UnityEngine.Random.Range(minSwaySpeed, maxSwaySpeed);
@@ -264,6 +283,5 @@ public class Horse : MonoBehaviour
         isRacing = true;
         RaceManager.instance.OnRaceStart -= RaceStartedTest;
         InitialRoutines();
-        // Time.timeScale = 0.2f; for testing
     }
 }

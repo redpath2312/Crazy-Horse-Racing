@@ -19570,7 +19570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
       propertyPath: maxStamina
-      value: 6000
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8171013210574657565, guid: ae4cf3e98c9222943a85e97e5f052532, type: 3}
       propertyPath: targetSpeed
@@ -19654,16 +19654,32 @@ PrefabInstance:
       value: Brown Horse
       objectReference: {fileID: 0}
     - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: isTired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
       propertyPath: isRacing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
       propertyPath: maxStamina
-      value: 6000
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: maxRunSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: minRunSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
       propertyPath: targetSpeed
       value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
+      propertyPath: staminaDrain
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4378431009911917441, guid: c3a01f4fcdaf0274c8243f96875878d4, type: 3}
       propertyPath: accelerationFactor
@@ -19736,7 +19752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
       propertyPath: maxStamina
-      value: 6000
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4574405562938662457, guid: 8eea8ea87e517144082c550dc360dffe, type: 3}
       propertyPath: targetSpeed
@@ -19834,11 +19850,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: isRacing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: maxStamina
-      value: 6000
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3752919714978733773, guid: 349667766bd36e240bfec26f1d751ceb, type: 3}
       propertyPath: isSprinting

@@ -21,6 +21,8 @@ public class RaceManager : MonoBehaviour
     public event EventHandler OnParadeStart;
     public event EventHandler OnParadeEnd;
     public float paradeSpeed = 10f;
+    [SerializeField]
+    List<string> horseNames = new List<string>();
 
     [SerializeField]
     GameObject entrance, startLine, finishLine;
@@ -117,6 +119,10 @@ public class RaceManager : MonoBehaviour
         {
             OnParadeEnd(this, EventArgs.Empty);
         }
+    }
+    public void RaceFinishNames(string horseName)
+    {
+        horseNames.Add(horseName);
     }
 }
 
